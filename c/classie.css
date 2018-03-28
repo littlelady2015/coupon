@@ -1,0 +1,313 @@
+body {
+    background-color: #fff6ea;
+}
+
+.banner {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.banner .banner_l {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 635px;
+    height: 535px;
+    margin-left: -950px;
+    background: url(//i2.beta.ule.com/i/event/2018/0327/awaken/banner_l.jpg) no-repeat top center;
+    /*background: url(//i2.ule.com/i/event/2018/0327/awaken/banner_l.jpg) no-repeat top center;*/
+}
+
+.banner .banner_m {
+    width: 635px;
+    height: 535px;
+    margin: 0 auto;
+    background: url(//i2.beta.ule.com/i/event/2018/0327/awaken/banner_m.jpg) no-repeat top center;
+    /*background: url(//i2.ule.com/i/event/2018/0327/awaken/banner_m.jpg) no-repeat top center;*/
+}
+
+.banner .banner_r {
+    position: absolute;
+    top: 0;
+    right: 50%;
+    width: 672px;
+    height: 535px;
+    margin-right: -970px;
+    background: url(//i2.beta.ule.com/i/event/2018/0327/awaken/banner_r.jpg) no-repeat top center;
+    /* background: url(//i2.ule.com/i/event/2018/0327/awaken/banner_r.jpg) no-repeat top center; */
+}
+
+.subtitle {
+    width: 100%;
+    height: 110px;
+    background-color: #439e29;
+}
+
+.subtitle .sub-inner {
+    width: 485px;
+    height: 110px;
+    margin: 0 auto;
+    background: url(//i2.beta.ule.com/i/event/2018/0327/awaken/sprite.png) no-repeat -305px 30px;
+    /* background: url(//i2.ule.com/i/event/2018/0327/awaken/sprite.png) no-repeat 0 300px; */
+}
+
+.main {
+    width: 960px;
+    margin: 0 auto;
+}
+.main .coupons {
+    height:100px;
+    transition: height .5s ease-in-out;
+    -moz-transition:height .5s ease-in-out ;
+    -webkit-transition:height .5s  ease-in-out;
+    -o-transition:height .5s ease-in-out;
+    overflow: hidden;
+}
+
+.main .coupons .coupon {
+    width: 240px;
+    height: 100px;
+    background: url(//i2.beta.ule.com/i/event/2018/0327/awaken/sprite.png) no-repeat 0 -135px;
+    /*background: url("//i2.ule.com/i/event/2018/0327/awaken/sprite.png") no-repeat 130px 0;*/
+    float: left;
+}
+
+.main .coupons .coupon .cou_l {
+    width: 100px;
+    height: 100px;
+    float: left;
+    color: #fff;
+}
+
+.main .coupons .coupon .cou_l .quan {
+    height: 15px;
+    width: 100px;
+    margin: 15px 10px -5px;
+    font-size: 16px;
+}
+
+.main .coupons .coupon .cou_l .price {
+    position: relative;
+    padding: 0 15px;
+    color: #fff;
+}
+
+.main .coupons .coupon .cou_l .price span {
+    position: absolute;
+    top: 40px;
+    left: 12px;
+}
+
+.main .coupons .coupon .cou_l span {
+    font-size: 15px;
+}
+
+.main .coupons .coupon .cou_l p {
+    font-size: 64px;
+    /*float: right;*/
+}
+
+.main .coupons .coupon .cou_r {
+    float: right;
+}
+
+.main .coupons .coupon .cou_r a {
+    color: #fff;
+}
+
+.main .coupons .coupon .cou_r .over {
+    width: 120px;
+    font-size: 16px;
+    padding-top: 10px;
+    padding-right: 15px;
+}
+
+.main .coupons .coupon .cou_r .get {
+    padding: 10px;
+}
+
+.main .coupons .coupon .cou_r .get a {
+    font-size: 14px;
+    color: #ff9301;
+}
+
+.main .coupons .coupon a:hover {
+    text-decoration: none;
+}
+
+.main .more {
+    position: relative;
+    width: 165px;
+    height: 30px;
+    margin: 25px auto;
+    border-radius: 10px;
+    background-color: #449f2a;
+    line-height: 30px;
+    text-align: center;
+}
+
+.main .more button {
+    width: 120px;
+    font-size: 18px;
+    color: #fff;
+    background-color:transparent;
+    border-style: none;
+    line-height: 30px;
+    outline: none;
+    cursor: pointer;
+}
+
+.main .more .box {
+    width: 0;
+    height: 0;
+}
+.main .more .box_bottom {
+    position: absolute;
+    top: 30px;
+    left: 65px;
+    border-top: 15px solid #449f2a;
+    border-right: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+    border-left: 15px solid transparent;
+}
+.main .more .box_top {
+    display: none;
+    position: absolute;
+    top: -30px;
+    left: 65px;
+    border-top: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-bottom: 15px solid #449f2a;
+    border-left: 15px solid transparent;
+}
+.main .item-wrapper {
+    margin-top: 15px;
+}
+
+.main .item-title-wrapper {
+    position: relative;
+    height: 105px;
+    background-color: #449f2a;
+}
+
+.main .item-title-wrapper h3.title {
+    text-align: center;
+    font-weight: 500;
+}
+
+.main .item-title-wrapper h3.title span {
+    /*position: relative; !*定位横线（当横线的父元素）*!*/
+    display: block; /*设置为块级元素会独占一行形成上下居中的效果*/
+    width: 80%;
+    line-height: 95px;
+    font-size: 30px;
+    font-weight: 800;
+    color: #fff;
+    margin: 0 auto;
+
+}
+
+.main .item-title-wrapper h3.title span:before {
+    content: ''; /*CSS伪类用法*/
+    position: absolute; /*定位背景横线的位置*/
+    top: 52%;
+    right: 25%;
+    background-color: #fff; /*宽和高做出来的背景横线*/
+    width: 95px;
+    height: 2px;
+}
+
+.main .item-title-wrapper h3.title span:after {
+    content: ''; /*CSS伪类用法*/
+    position: absolute; /*定位背景横线的位置*/
+    top: 52%;
+    left: 25%;
+    background-color: #fff; /*宽和高做出来的背景横线*/
+    width: 95px;
+    height: 2px;
+}
+.main .item-wrapper .item {
+    position: relative;
+    width: 230px;
+    height: 365px;
+    margin: 0 10px 5px 0;
+    float: left;
+}
+.main .item-wrapper .item .item-img img  {
+    height: 230px;
+}
+.main .item-wrapper .item .tips {
+    position: absolute;
+    left: 10px;
+    width: 50px;
+    height: 65px;
+    background: url(//i2.beta.ule.com/i/event/2018/0327/awaken/sprite.png) no-repeat -166px 0;
+}
+
+.main .item-wrapper .item .item-txt {
+    width: 230px;
+    height: 40px;
+    font-size: 16px;
+    margin: 5px auto;
+    vertical-align: middle;
+}
+
+.main .item-wrapper .item .item-txt p {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+}
+
+.main .item-wrapper .item .item-txt .blk {
+    height: 48px;
+    margin-bottom: 5px;
+    color: #000;
+    font-size: 18px;
+}
+
+.main .item-wrapper .item .p-title {
+    width: 60px;
+    vertical-align: middle;
+    font-style: italic;
+    border: 1px solid #ff3b87;
+}
+
+.main .item-wrapper .item .p-title{
+    display: inline-block;
+    height: 20px;
+    color: #ff3b87;
+}
+.main .item-wrapper .item .p-num {
+    display: inline-block;
+    height: 30px;
+    color: #ff3b87;
+}
+.main .item-wrapper .item .p-title, .p-num .hlight {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.main .item-wrapper .item .p-num span {
+    font-size: 25px;
+}
+
+.main .item-wrapper .item .btn-wrapper {
+    width: 200px;
+}
+
+.main .item-wrapper .item .btns {
+    width: 210px;
+    height: 40px;
+    margin-top: 5px;
+    line-height: 40px;
+    text-align: center;
+    background-color: #ff3b87;
+    border-radius: 25px;
+}
+
+.main .item-wrapper .item .btns a {
+    font-size: 20px;
+    color: #fff;
+}
