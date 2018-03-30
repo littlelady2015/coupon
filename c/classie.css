@@ -43,7 +43,9 @@ body {
     height: 110px;
     background-color: #439e29;
 }
-
+.none{
+    display: none;
+}
 .subtitle .sub-inner {
     width: 485px;
     height: 110px;
@@ -51,7 +53,9 @@ body {
     background: url(//i2.beta.ule.com/i/event/2018/0327/awaken/sprite.png) no-repeat -305px 30px;
     /* background: url(//i2.ule.com/i/event/2018/0327/awaken/sprite.png) no-repeat 0 300px; */
 }
-
+.none {
+    display: none;
+}
 .main {
     width: 960px;
     margin: 0 auto;
@@ -81,16 +85,18 @@ body {
 }
 
 .main .coupons .coupon .cou_l .quan {
-    height: 15px;
+    height: 18px;
     width: 100px;
-    margin: 15px 10px -5px;
+    margin: 15px 10px -8px;
     font-size: 16px;
+    overflow: hidden;
 }
 
 .main .coupons .coupon .cou_l .price {
     position: relative;
-    padding: 0 15px;
+    padding: 0 20px;
     color: #fff;
+    text-align: center;
 }
 
 .main .coupons .coupon .cou_l .price span {
@@ -118,13 +124,14 @@ body {
 
 .main .coupons .coupon .cou_r .over {
     width: 120px;
+    height: 40px;
+    padding: 10px;
     font-size: 16px;
-    padding-top: 10px;
-    padding-right: 15px;
 }
 
 .main .coupons .coupon .cou_r .get {
-    padding: 10px;
+    line-height: 100%;
+    padding-left:1rem;
 }
 
 .main .coupons .coupon .cou_r .get a {
