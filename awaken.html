@@ -24,22 +24,18 @@
     <div class="sub-inner">
     </div>
 </div>
+<!--导航栏-->
+<ul class="slider">
+    <li><a href="#">休闲食品</a></li>
+    <li><a href="#">地道农品</a></li>
+    <li><a href="#">家居清洁</a></li>
+    <li><a href="#">美妆洗护</a></li>
+    <li><a href="#">3C数码</a></li>
+</ul>
+<!--模态框-->
 <div class="popbox"></div>
 <div class="main">
-    <ul class="coupons  clearfix">
-        <li class="coupon coupon-1"></li>
-        <li class="coupon coupon-2"></li>
-        <li class="coupon coupon-3"></li>
-        <li class="coupon coupon-4"></li>
-        <li class="coupon coupon-5"></li>
-        <li class="coupon coupon-6"></li>
-        <li class="coupon coupon-7"></li>
-        <li class="coupon coupon-8"></li>
-        <li class="coupon coupon-9"></li>
-        <li class="coupon coupon-10"></li>
-        <li class="coupon coupon-11"></li>
-        <li class="coupon coupon-12"></li>
-
+    <ul class="coupons h100 clearfix">
 
     </ul>
     <div class="more">
@@ -76,7 +72,7 @@
 
     <script type="text/template" id="itemTpl">
         <div class="item clearfix">
-            <div class="tips">{tip}</div>
+            <div class="tips"></div>
             <div class="item-img">
                 <a class="blk" target="_blank" href="{listingUrl}">
                     <img src="{imgUrl}" alt="{listingName}">
@@ -94,44 +90,48 @@
                     <span class="hlight">{minPrice}</span>
                 </div>
                 <div class="btns">
-                    <a href="{listingUrl}">立即抢购</a>
+                    <a target="_blank" href="{listingUrl}">立即抢购</a>
                 </div>
 
             </div>
         </div>
     </script>
     <script type="text/template" id="couTpl">
-        <div class="cou_l clearfix">
-            <div class="quan">#{activityName}#</div>
-            <div class="price">
-                <p>{amount}</p>
-                <span>￥</span>
-            </div>
+        <li class="coupon">
+            <div class="cou_l clearfix">
+                <div class="quan">#{activityName}#</div>
+                <div class="price">
+                    <p>{amount}</p>
+                    <span>￥</span>
+                </div>
 
-        </div>
-        <div class="cou_r">
-            <div class="over">
-                <a href="javascript:void(0)" data-detailid="{detailId}">{couponInfo}
-                </a>
             </div>
-            <div class="get"><a data-detailid="{detailId}">立即领取</a></div>
-        </div>
-
+            <div class="cou_r">
+                <div class="over">
+                    <a href="javascript:void(0)" data-detailid="{detailId}">{couponInfo}
+                    </a>
+                </div>
+                <div class="get"><a data-detailid="{detailId}">立即领取</a></div>
+            </div>
+        </li>
     </script>
     <script type="text/template" id="popbox">
         <div class="couDialog">
-            <!--遮罩-->
-
+            <div class="cou-bg">
+                <i class="bg bg-l"></i>
+                <i class="bg bg-m"></i>
+                <i class="bg bg-r"></i>
+            </div>
             <span class="couClose"></span>
-            <div class="couImg"></div>
+                <div class="couImg {couCss}"></div>
             <div class="couInfo">
                 <div class="couTxt"> {tip}</div>
                 <div class="couPrompt">{prompt}</div>
                 <div class="couBtns">
-                    <a href="javascript:void(0)">确定</a>
-                    <a target="_blank" href="//my.ule.com/mywallet/coupon/queryCouponDetail.do">
-                        查看我的优惠券
-                    </a>
+                    <a class="confirm">确定</a>
+                    <!--<a target="_blank" href="//my.ule.com/mywallet/coupon/queryCouponDetail.do">-->
+                        <!--查看我的优惠券-->
+                    <!--</a>-->
                 </div>
             </div>
         </div>

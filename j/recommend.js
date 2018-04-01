@@ -2,7 +2,10 @@
 
 var Rachel =
     {
-        data: {restype: 2001, moduleKeys: 'ulenp_20180328_bfch,event_apr_20180320_traval,event_apr_20180320_care'},
+        data: {
+            restype: 2001,
+            moduleKeys: 'yzg_event_28xxsp,yzg_event_ddnp,yzg_event_jjqj,yzg_event_mzxh,yzg_event_3csm'
+        },
         init: function () {
             this.getItemList();
             this.toggle();
@@ -16,6 +19,10 @@ var Rachel =
             //返回字段
             receive: "//prize.beta.ule.com/mc/m/api/v2/base/coupon/receiveCoupon?callback=?"
         },
+        //tips
+        getTips: function () {
+
+        },
         getItemList: function () {
             var self = this;
             var html = $('#itemTpl').html();
@@ -26,8 +33,16 @@ var Rachel =
                 for (var i = 0, rlen = rcmdCode.length; i < rlen; i++) {
                     //获取模板 初始化
                     var itemHtml = '';
+                    var tagHtml = '';
+                    // console.log(O[rcmdCode[i]])
+                    if (!O[rcmdCode[i]]) continue;
                     for (var m = 0, mlen = O[rcmdCode[i]].length; m < mlen; m++) {
+                        if (!O[rcmdCode[i]][m].customAttribute) continue;
+                        O[rcmdCode[i]][m].customAttribute = JSON.parse(O[rcmdCode[i]][m].customAttribute);
+
+                        var a = O[rcmdCode[i]][m].customAttribute;
                         itemHtml += html.substitute(O[rcmdCode[i]][m]);
+
                     }
                     $('.item-wrapper-' + (i + 1)).append(itemHtml);
                 }
@@ -44,21 +59,30 @@ var Rachel =
                 detailId: "",
                 useScene: "4000",
                 activityNo: 'MA_U_150771417435162',
-                sortBy:'8000'
+                sortBy: '8000'
             };
             var couTpl = $('#couTpl').html();
             $.getJSON(self.apis.list, par, function (O) {
                 var coulen = O.result.confList.prizeCouponList.length;
+                var couHtml = '';
                 for (var j = 0; j < coulen; j++) {
-                    var couHtml = '';
-                    console.log(O.result.confList.prizeCouponList[j]);
-                    couHtml = couTpl.substitute(O.result.confList.prizeCouponList[j]);
-                    $('.coupon-' + (j+1)).append(couHtml);
+                    // console.log(O.result.confList.prizeCouponList[j]);
+                    couHtml += couTpl.substitute(O.result.confList.prizeCouponList[j]);
+                    couHtml += couTpl.substitute(O.result.confList.prizeCouponList[j]);
                 }
+                $('.coupons').append(couHtml);
             });
             //定义点击事件
-            $(".coupon").live('click',function () {
-                 $('.couDialog').show();
+            $(".coupon").live('click', function () {
+                $('.couDialog').attr("data-click", 'true');
+                $('.popbox').show();
+                self.closeDialog();
+            });
+        },
+        //关闭对话框
+        closeDialog: function () {
+            $('.couDialog').find(".couClose,.confirm").click(function () {
+                $('.popbox').hide();
             })
         },
         //返回信息判断
@@ -71,15 +95,13 @@ var Rachel =
                 'channel': '100000'
             };
             $.getJSON(self.apis.receive, par, function (O) {
-                //初始化定义
-                var receiveMsg={
-                    couCss : 'error',
-                    tip : '<p>蓝瘦，香菇，</p><p>此券已从你的全世界路过。</p>',
-                    prompt :'<p>更多优惠等你来抢，快试试其他优惠券吧！</p>',
-                    code : '',
-                    btn : ''
-                }
+                    //初始化定义
 
+                    var couCss = 'error';
+                    var tip = '<p>蓝瘦，香菇，</p><p>此券已从你的全世界路过。</p>';
+                    var prompt = '<p>更多优惠等你来抢，快试试其他优惠券吧！</p>';
+                    var code = '';
+                    var btn = '';
                     switch (O.code) {
                         case '0000':
                             couCss = 'success';
@@ -88,48 +110,69 @@ var Rachel =
                             btn = '<a href="//my.ule.com/mywallet/coupon/queryCouponDetail.do" target="_blank" class="myCoupons">查看我的优惠券</a>';
                             break;
                         case '3003':
-                            tip = '<p>哎哟喂，还是慢了一拍，</p><p>该' + __txt + '今日已领完！</p>';
+                            couCss = 'other';
+                            tip = '<p>哎哟喂，还是慢了一拍，</p><p>该优惠券今日已领完！</p>';
                             break;
                         case '3004':
-                            tip = '<p>哎哟喂，还是慢了一拍，</p><p>该' + __txt + '已领完！</p>';
+                            couCss = 'other';
+                            tip = '<p>哎哟喂，还是慢了一拍，</p><p>该优惠券已领完！</p>';
+                            break;
+                        case '3005':
+                        case '3006':
+                        case  '3009':
+                            couCss = 'other';
+                            tip = '<p>亲，该优惠券领取有限制。</p><p>具体查看活动规则。</p>';
                             break;
                         case '9002':
+                            couCss = 'other';
                             tip = '<p>活动优惠券领取实在太火爆，您没有抢到哦！ </p>';
                             break;
                         case '9003':
+                            couCss = 'other';
                             tip = '<p>hi亲，</p><p>您今天领的券实在太多了！</p>';
                             break;
                         case  '3007':
+                            couCss = 'other';
                             tip = '<p>亲，该优惠券不在领取时间内哦，不能领取！</p>';
                             break;
                         case '9999':
+                            couCss = 'other';
                             tip = '<p>亲，你还没有登录哦~快到页面顶部点击登录吧！</p>'
                         default :
-                            couCss = 'disabled';
+                            couCss = 'other';
                             tip = '<p>啊哦，您的浏览器出错了</p>'
                     }
-                    var feHtml =$("#popbox").html();
-                    feedHtml =feHtml.substitute(receiveMsg);
+                    var feHtml = $("#popbox").html();
+                    feedHtml = feHtml.substitute({
+                            'code': code,
+                            'couCss': couCss,
+                            'tip': tip,
+                            'prompt': prompt,
+                            'btn': btn
+                        }
+                    );
                     $('.popbox').append(feedHtml);
-                    $('.couDialog').css("display","none");
+                    // console.log(O.code);
                 }
             )
         },
         toggle: function () {
+            var flag = true;
             $(".ckmore").bind("click", function () {
                 var c = $(".coupons").eq(0);
-                var h = $(".coupons").eq(0).height();
-                if (h < 150) {
-                    c.height(300);
+                if (flag) {
+                    c.removeClass('h100').addClass('hauto');
                     $('.ckmore')[0].innerHTML = '收起';
-                    $('.box_bottom').css("display", "none");
-                    $('.box_top').css("display", "block");
+                    $('.box_top').show();
+                    $('.box_bottom').hide();
+                    flag = !flag;
                 }
                 else {
-                    c.height(100);
+                    c.removeClass('hauto').addClass('h100');
                     $('.ckmore')[0].innerHTML = '点击查看更多';
-                    $('.box_top').css("display", "none");
-                    $('.box_bottom').css("display", "block");
+                    $('.box_bottom').show();
+                    $('.box_top').hide();
+                    flag = !flag;
                 }
             });
         }
