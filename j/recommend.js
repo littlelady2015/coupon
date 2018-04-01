@@ -11,6 +11,7 @@ var Rachel =
             this.toggle();
             this.getCoupons();
             this.feedback();
+            this.slider();
         },
         apis: {
             recommendApi: "//search.ule.com/api/recommend?jsoncallback=?",
@@ -33,16 +34,17 @@ var Rachel =
                 for (var i = 0, rlen = rcmdCode.length; i < rlen; i++) {
                     //获取模板 初始化
                     var itemHtml = '';
-                    var tagHtml = '';
-                    // console.log(O[rcmdCode[i]])
+                    console.log(O[rcmdCode[i]])
                     if (!O[rcmdCode[i]]) continue;
                     for (var m = 0, mlen = O[rcmdCode[i]].length; m < mlen; m++) {
                         if (!O[rcmdCode[i]][m].customAttribute) continue;
                         O[rcmdCode[i]][m].customAttribute = JSON.parse(O[rcmdCode[i]][m].customAttribute);
-
                         var a = O[rcmdCode[i]][m].customAttribute;
+                        if (a.tag) {
+                            O[rcmdCode[i]][m].tagClass = "hasClass";
+                            O[rcmdCode[i]][m].tag = a.tag;
+                        }
                         itemHtml += html.substitute(O[rcmdCode[i]][m]);
-
                     }
                     $('.item-wrapper-' + (i + 1)).append(itemHtml);
                 }
@@ -175,7 +177,38 @@ var Rachel =
                     flag = !flag;
                 }
             });
+
+            //侧边栏
+            function reiszeFn() {
+                var h1 = $(window).scrollTop();
+                if (h1 > 450) {
+                    $(".slider-wrapper").show();
+                }
+                else {
+                    $(".slider-wrapper").hide();
+                }
+            }
+
+            $(window).scroll(function () {
+                reiszeFn();
+            })
+        },
+        //滚动条
+        slider: function () {
+            for (var i = 0, len = $(".slider li").length; i < len; i++) {
+                //获取索引值
+                $(".slider li").eq(i).attr("index", i+1);
+            }
+            $(".slider li").click(function () {
+                var s = $(this).attr("index");
+                h = 0;
+                for (var j = 1; j < s+1; j++) {
+                   h+=$(".item-wrapper-"+j).height();
+                }
+                $("html,body").animate({scrollTop: h}, 500);
+            })
         }
+
     }
 $(function () {
     Rachel.init();
