@@ -70,7 +70,6 @@ var Rachel =
                 for (var j = 0; j < coulen; j++) {
                     // console.log(O.result.confList.prizeCouponList[j]);
                     couHtml += couTpl.substitute(O.result.confList.prizeCouponList[j]);
-                    couHtml += couTpl.substitute(O.result.confList.prizeCouponList[j]);
                 }
                 $('.coupons').append(couHtml);
             });
@@ -201,9 +200,13 @@ var Rachel =
             }
             $(".slider li").click(function () {
                 var s = $(this).attr("index");
-                h = 0;
-                for (var j = 1; j < s+1; j++) {
-                   h+=$(".item-wrapper-"+j).height();
+                s=parseInt(s);
+                h =850;
+                for (var j = 1; j < s; j++) {
+                    if(s<6){    h+=$(".slider-"+j).height();}
+                    else {
+                        h=400;
+                    }
                 }
                 $("html,body").animate({scrollTop: h}, 500);
             })
